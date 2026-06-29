@@ -18,7 +18,7 @@ class ClickerServiceTest {
 
     @BeforeEach
     void reset() {
-        Counter counter = counterRepository.findById(1L).orElseThrow();
+        Counter counter = counterRepository.findAll().stream().findFirst().orElseThrow();
         counter.setCount(0L);
         counterRepository.save(counter);
     }

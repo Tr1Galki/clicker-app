@@ -24,16 +24,15 @@ public class ClickerService {
 
     @Transactional(readOnly = true)
     public long getCount() {
-        return counterRepository.findById(1L)
+        return counterRepository.findAll().stream()
+                .findFirst()
                 .map(Counter::getCount)
                 .orElse(0L);
     }
 
     @Transactional
     public long increment() {
-        Counter counter = counterRepository.findById(1L).orElseThrow();
-        counter.setCount(counter.getCount() + 1);
-        counterRepository.save(counter);
-        return counter.getCount();
+        counterRepository.increment();
+        return getCount();
     }
 }
