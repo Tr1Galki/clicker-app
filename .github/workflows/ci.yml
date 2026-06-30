@@ -36,18 +36,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Railway CLI
-        run: npm install -g @railway/cli --cache /tmp/npm-cache
-
       - name: Deploy backend to Railway
-        working-directory: backend
-        env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-        run: |
-          railway up --detach \
-            --project 3bf91b12-c74b-4868-8cf2-876ac1807a30 \
-            --service 9d26c73d-042d-4a26-a050-ad2b7d6ddef2 \
-            --environment production
+        uses: railwayapp/deploy-action@v1
+        with:
+          railway-token: ${{ secrets.RAILWAY_TOKEN }}
+          project-id: 3bf91b12-c74b-4868-8cf2-876ac1807a30
+          service-id: 9d26c73d-042d-4a26-a050-ad2b7d6ddef2
+          environment: production
 
       - name: Deploy frontend to Vercel
         uses: amondnet/vercel-action@v25
