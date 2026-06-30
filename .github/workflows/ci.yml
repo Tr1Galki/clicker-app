@@ -45,7 +45,7 @@ jobs:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         run: |
           railway up --detach \
-            --project-id 3bf91b12-c74b-4868-8cf2-876ac1807a30 \
+            --project 3bf91b12-c74b-4868-8cf2-876ac1807a30 \
             --service 9d26c73d-042d-4a26-a050-ad2b7d6ddef2
 
       - name: Deploy frontend to Vercel
