@@ -10,7 +10,7 @@ export default function Page() {
   useEffect(() => {
     const fetchInitialCount = async () => {
       try {
-        const res = await fetch('http://localhost:8080/api/count')
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/count`)
         const data = await res.json()
         setCount(data.count)
       } catch (error) {
@@ -26,7 +26,7 @@ export default function Page() {
   const handleClick = async () => {
     setLoading(true)
     try {
-      const res = await fetch('http://localhost:8080/api/click', { method: 'POST' })
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/click`, { method: 'POST' })
       const data = await res.json()
       setCount(data.count)
     } catch (error) {
